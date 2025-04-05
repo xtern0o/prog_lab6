@@ -21,5 +21,9 @@ public class RequestCommand implements Serializable {
     public RequestCommand(String commandName) {
         this(commandName, null, null);
     }
+    
+    public boolean isEmpty() {
+        return commandName.isBlank() && args.isEmpty() && ticketObject == null;
+    }
 
 }

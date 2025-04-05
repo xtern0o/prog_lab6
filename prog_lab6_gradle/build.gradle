@@ -44,7 +44,7 @@ subprojects {
         archiveClassifier.set('all')                                    // fat-jar
         archiveVersion.set(allprojects.version.toString())              // доабвление версии к названию файла
         manifest {
-            attributes 'Main-Class': "org.example.${project.name}.Main" // корректное определение манифеста
+            attributes 'Main-Class': "org.example.${project.name}.Main" // корректное определение Main-Class
         }
     }
 }
