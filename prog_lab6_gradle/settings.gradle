@@ -1,0 +1,6 @@
+rootProject.name = 'prog_lab6_gradle'
+
+include 'client'
+include 'server'
+include 'common'
+
