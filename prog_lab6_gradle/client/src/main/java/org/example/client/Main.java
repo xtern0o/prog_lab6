@@ -19,7 +19,12 @@ public class Main {
             return;
         }
         host = args[0];
-        port = Integer.parseInt(args[1]);
+        try {
+            port = Integer.parseInt(args[1]);
+        } catch (NumberFormatException numberFormatException) {
+            consoleOutput.printError("порт - число!!");
+            return;
+        }
         if (port < 0 || port > 65535) {
             consoleOutput.printError("Некорректное значение порта: 0 < port < 65535");
             return;
@@ -28,6 +33,5 @@ public class Main {
         Client client = new Client(host, port, 100, 10, consoleOutput);
 
         new RuntimeManager(consoleOutput, consoleInput, client, runnableScriptsManager).run();
-
     }
 }

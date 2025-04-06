@@ -46,6 +46,9 @@ public class RuntimeManager implements Runnable {
 
                 String[] queryParts = queryString.split(" ");
 
+                // TODO: подумать, как не хардкодить
+                processSpecialCommands(queryParts);
+
                 Response response = client.sendRequest(
                         new RequestCommand(
                                 queryParts[0],
@@ -53,14 +56,11 @@ public class RuntimeManager implements Runnable {
                         )
                 );
                 this.printResponse(response);
-                consoleOutput.println("->> " + response.getResponseStatus());
 
                 switch (response.getResponseStatus()) {
+                    case OBJECT_REQUIRED -> buildObject(queryParts);
                     case EXIT -> {
                         return;
-                    }
-                    case OBJECT_REQUIRED -> {
-                        buildObject(queryParts);
                     }
                     default -> {}
                 }
@@ -109,6 +109,12 @@ public class RuntimeManager implements Runnable {
         }
         else {
             consoleOutput.println(responseOnBuild.getMessage());
+        }
+    }
+
+    public void processSpecialCommands(String[] queryParts) {
+        if (queryParts[0].equals("exit")) {
+            System.exit(0);
         }
     }
 }

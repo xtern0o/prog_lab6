@@ -70,6 +70,7 @@ public class Client {
      * @return response object
      */
     public Response sendRequest(RequestCommand requestCommand) {
+        // TODO: Если сервер долго не отвечает, то клиент просто виснет в ожидании ответа
         while (true) {
             try {
                 if (serverWriter == null) throw new IOException();
@@ -128,7 +129,5 @@ public class Client {
         }
 
     }
-
-
 
 }
