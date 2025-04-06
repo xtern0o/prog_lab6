@@ -12,8 +12,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 /**
- * Менеджер клиента, управляющий соединением с сервером,
- * запросами и приемом ответов
+ * Менеджер клиента, управляющий соединением с сервером, запросами и приемом ответов
  * @author maxkarn
  */
 public class Client {
@@ -42,7 +41,7 @@ public class Client {
         this.consoleOutput = consoleOutput;
     }
 
-    public void connectToServer() {
+    public boolean connectToServer() {
         try {
             if (this.currentReconnectionAttempt > 0) {
                 consoleOutput.println(
@@ -55,10 +54,13 @@ public class Client {
             }
             this.socket = new Socket(host, port);
             this.serverWriter = new ObjectOutputStream(socket.getOutputStream());
+            return true;
         } catch (UnknownHostException e) {
             consoleOutput.printError("Неверный адрес сервера: проверьте корректность хоста и порта");
+            return false;
         } catch (IOException e) {
             consoleOutput.printError("Произошла ошибка на стороне сервера");
+            return false;
         }
     }
 
@@ -82,22 +84,27 @@ public class Client {
 
                 this.currentReconnectionAttempt = 0;
                 return response;
-
-            } catch (IOException ioException) {
+            }
+            catch (IOException ioException) {
                 if (currentReconnectionAttempt == 0) {
                     connectToServer();
                     currentReconnectionAttempt++;
-                } else {
-                    consoleOutput.println("Соединение с сервером было разорвано");
+                }
+                else {
+//                    consoleOutput.println("Соединение с сервером не установлено");
                     try {
-                        currentReconnectionAttempt++;
-                        if (currentReconnectionAttempt > maxReconnectionAttempts) {
+                        if (currentReconnectionAttempt >= maxReconnectionAttempts) {
+                            currentReconnectionAttempt = 0;
                             return new Response(ResponseStatus.SERVER_ERROR, "Не удалось установать соединение с сервером");
                         }
-                        consoleOutput.println("Повторная попытка подключения через " + reconnectionDelay + " мс");
-                        Thread.sleep(reconnectionDelay);
-                        connectToServer();
-                    } catch (Exception exception) {
+                        else {
+                            currentReconnectionAttempt++;
+                            consoleOutput.println("Повторная попытка подключения через " + reconnectionDelay + " мс");
+                            Thread.sleep(reconnectionDelay);
+                            connectToServer();
+                        }
+                    }
+                    catch (Exception exception) {
                         consoleOutput.printError("Неудачная попытка подключения: " + exception.getMessage());
                     }
                 }
