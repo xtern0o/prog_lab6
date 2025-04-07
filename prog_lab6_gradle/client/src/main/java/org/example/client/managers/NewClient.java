@@ -26,6 +26,7 @@ public class NewClient {
     private SocketChannel socketChannel;
     private Selector selector;
     private int currentReconnectionAttempt;
+    private long nextReconnectionTime;
 
     private RequestCommand pendingRequest;
     private ByteBuffer byteBuffer = ByteBuffer.allocate(16384);
