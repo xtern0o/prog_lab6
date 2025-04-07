@@ -42,8 +42,7 @@ public class CollectionManager {
     public static int generateFreeId() {
         if (collection.isEmpty()) return 1;
 
-        HashSet<Integer> existIds = collection
-                .stream()
+        HashSet<Integer> existIds = collection.stream()
                 .map(Ticket::getId)
                 .collect(Collectors.toCollection(HashSet::new));
 

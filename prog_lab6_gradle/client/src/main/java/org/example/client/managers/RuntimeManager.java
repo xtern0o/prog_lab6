@@ -3,13 +3,11 @@ package org.example.client.managers;
 import lombok.AllArgsConstructor;
 import org.example.client.builders.TicketBuilder;
 import org.example.client.cli.ConsoleInput;
-import org.example.client.utils.InputReader;
 import org.example.common.dtp.RequestCommand;
 import org.example.common.dtp.Response;
 import org.example.common.dtp.ResponseStatus;
 import org.example.common.entity.Ticket;
 import org.example.common.utils.Printable;
-import org.example.client.managers.Client;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,7 +17,7 @@ import java.util.NoSuchElementException;
 public class RuntimeManager implements Runnable {
     private final Printable consoleOutput;
     private final ConsoleInput consoleInput;
-    private final Client client;
+    private final NewClient client;
     private final RunnableScriptsManager runnableScriptsManager;
 
     @Override
@@ -49,7 +47,7 @@ public class RuntimeManager implements Runnable {
                 // TODO: подумать, как не хардкодить
                 processSpecialCommands(queryParts);
 
-                Response response = client.sendRequest(
+                Response response = client.send(
                         new RequestCommand(
                                 queryParts[0],
                                 new ArrayList<>(Arrays.asList(Arrays.copyOfRange(queryParts, 1, queryParts.length)))
@@ -101,7 +99,7 @@ public class RuntimeManager implements Runnable {
 
     public void buildObject(String[] queryParts) {
         Ticket ticket = new TicketBuilder(consoleOutput, consoleInput).build();
-        Response responseOnBuild = client.sendRequest(
+        Response responseOnBuild = client.send(
                 new RequestCommand(queryParts[0], ticket)
         );
         if (responseOnBuild.getResponseStatus() != ResponseStatus.OK) {

@@ -2,9 +2,7 @@ package org.example.client;
 
 import org.example.client.cli.ConsoleInput;
 import org.example.client.cli.ConsoleOutput;
-import org.example.client.managers.Client;
-import org.example.client.managers.RunnableScriptsManager;
-import org.example.client.managers.RuntimeManager;
+import org.example.client.managers.*;
 
 public class Main {
     static String host;
@@ -30,7 +28,8 @@ public class Main {
             return;
         }
 
-        Client client = new Client(host, port, 100, 10, consoleOutput);
+//        OldClient client = new OldClient(host, port, 100, 10, consoleOutput);
+        NewClient client = new NewClient(host, port, 100, 100, consoleOutput);
 
         new RuntimeManager(consoleOutput, consoleInput, client, runnableScriptsManager).run();
     }
