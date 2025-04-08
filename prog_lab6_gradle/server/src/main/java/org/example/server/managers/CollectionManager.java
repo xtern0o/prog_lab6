@@ -2,6 +2,7 @@ package org.example.server.managers;
 
 import lombok.Getter;
 import org.example.common.entity.Ticket;
+import org.example.common.exceptions.ValidationError;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -17,6 +18,7 @@ public class CollectionManager {
      * Время инициализации коллекции
      * Время инициализации объекта CollectionManager
      */
+    @Getter
     private final Date initDate = new Date();
 
     /**
@@ -108,5 +110,18 @@ public class CollectionManager {
                 .distinct()
                 .count() == collection.size();
 
+    }
+
+    /**
+     * Добавляет элемент в коллекцию предварительно проведя контрольную валидацию
+     * @param ticket новый элемент
+     * @throws ValidationError в случае неудачного прохождения валидации
+     */
+    public void addElement(Ticket ticket) throws ValidationError {
+        if (ticket.validate()) {
+            collection.add(ticket);
+            return;
+        }
+        throw new ValidationError(ticket);
     }
 }

@@ -12,7 +12,7 @@ import org.example.common.utils.Validatable;
  */
 @Getter
 @Setter
-public class Coordinates implements Validatable {
+public class Coordinates implements Validatable, Comparable {
     private float x;
     private Integer y; //Значение поля должно быть больше -471, Поле не может быть null
 
@@ -30,5 +30,20 @@ public class Coordinates implements Validatable {
     @Override
     public String toString() {
         return "(" + x + ", " + y + ")";
+    }
+
+    @Override
+    public int compareTo(Object object) {
+        if (!(object instanceof Coordinates)) {
+            throw new IllegalArgumentException("Сравнивать можно только с Coordinates");
+        }
+        Coordinates other = (Coordinates) object;
+
+        int xCompare = Float.compare(this.x, other.x);
+        if (xCompare != 0) {
+            return xCompare;
+        }
+
+        return Integer.compare(this.y, other.y);
     }
 }

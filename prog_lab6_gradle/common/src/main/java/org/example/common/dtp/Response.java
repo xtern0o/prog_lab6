@@ -5,6 +5,7 @@ import lombok.Getter;
 import org.example.common.entity.Ticket;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.PriorityQueue;
 
 @Getter
@@ -12,7 +13,7 @@ import java.util.PriorityQueue;
 public class Response implements Serializable {
     private final ResponseStatus responseStatus;
     private final String message;
-    private final PriorityQueue<Ticket> collection;
+    private final Collection collection;
 
     public Response(ResponseStatus responseStatus, String message) {
         this(responseStatus, message, null);
