@@ -21,10 +21,10 @@ public class UpdateCommand extends Command {
 
         try {
             int id = Integer.parseInt(requestCommand.getArgs().get(0));
+            if (requestCommand.getTicketObject() == null) {
+                return new Response(ResponseStatus.OBJECT_REQUIRED, "Для выполнения команды нужно создать элемент коллекции");
+            }
             if (collectionManager.removeById(id)) {
-                if (requestCommand.getTicketObject() == null) {
-                    return new Response(ResponseStatus.OBJECT_REQUIRED, "Для выполнения команды нужно создать элемент коллекции");
-                }
                 Ticket newTicket = requestCommand.getTicketObject();
                 newTicket.setId(id);
                 collectionManager.addElement(newTicket);

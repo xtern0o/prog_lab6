@@ -6,13 +6,15 @@ import lombok.Getter;
 import lombok.Setter;
 import org.example.common.utils.Validatable;
 
+import java.io.Serializable;
+
 /**
  * Модель Person
  * @author maxkarn
  */
 @Getter
 @Setter
-public class Person implements Validatable{
+public class Person implements Validatable, Serializable {
     private long height; //Значение поля должно быть больше 0
     private Country nationality; //Поле может быть null
 

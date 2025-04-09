@@ -16,8 +16,9 @@ public class PrintUniqueDiscountCommand extends Command {
 
     @Override
     public Response execute(RequestCommand requestCommand) {
-        if (!requestCommand.getArgs().isEmpty()) throw new IllegalArgumentException();
-
+        if (requestCommand.getArgs() != null) {
+            if (!requestCommand.getArgs().isEmpty()) throw new IllegalArgumentException();
+        }
         List<Float> uniqueDiscounts = CollectionManager.getCollection()
                 .stream()
                 .map(Ticket::getDiscount)

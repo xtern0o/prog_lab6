@@ -45,7 +45,7 @@ public class Main {
         );
         commandManager.addCommands(commands);
 
-        Server server = new Server(port, requestCommandHandler);
+        Server server = new Server(port, requestCommandHandler, consoleOutput);
         RuntimeManager runtimeManager = new RuntimeManager(consoleOutput, server, fileManager);
 
         try {

@@ -21,8 +21,9 @@ public class InfoCommand extends Command {
 
     @Override
     public Response execute(RequestCommand requestCommand) {
-        if (!requestCommand.getArgs().isEmpty()) throw new IllegalArgumentException();
-
+        if (requestCommand.getArgs() != null) {
+            if (!requestCommand.getArgs().isEmpty()) throw new IllegalArgumentException();
+        }
         StringBuilder res = new StringBuilder("Информация о коллекции:\n");
         res.append(String.format(
                 ": тип                  | %s\n" +

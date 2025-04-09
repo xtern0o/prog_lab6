@@ -81,7 +81,6 @@ public class SimpleClient implements Closeable {
         if (requestCommand.isEmpty()) return new Response(ResponseStatus.COMMAND_ERROR, "Ответ пустой");
 
         if (!ensureConnected()) return new Response(ResponseStatus.SERVER_ERROR, "Не удалось подключиться к серверу");
-
         try {
             if (!isConnected()) {
                 connectToServer();
@@ -120,6 +119,7 @@ public class SimpleClient implements Closeable {
             reconnect();
             if (!isConnected()) return new Response(ResponseStatus.SERVER_ERROR, "Ошибка сервера: " + ioException.getMessage());
             return send(requestCommand);
+//            throw new RuntimeException(ioException);
         } catch (ClassNotFoundException classNotFoundException) {
             return new Response(ResponseStatus.SERVER_ERROR, "Некорректный формат данных от сервера");
         } catch (InterruptedException e) {

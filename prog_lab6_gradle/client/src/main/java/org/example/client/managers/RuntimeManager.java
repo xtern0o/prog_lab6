@@ -65,9 +65,6 @@ public class RuntimeManager implements Runnable {
                         buildObject(queryParts);
                         System.out.println(Arrays.toString(queryParts));
                     }
-                    case EXIT -> {
-                        return;
-                    }
                     default -> {}
                 }
             } catch (NoSuchElementException noSuchElementException) {
@@ -84,7 +81,9 @@ public class RuntimeManager implements Runnable {
             case OK -> {
                 consoleOutput.println(response.getMessage());
                 if (response.getCollection() != null) {
-                    consoleOutput.println(response.getCollection().toString());
+                    for (Ticket t : response.getCollection()) {
+                        consoleOutput.println(t.toString());
+                    }
                 }
             }
             case COMMAND_ERROR -> {
@@ -106,7 +105,11 @@ public class RuntimeManager implements Runnable {
     public void buildObject(String[] queryParts) {
         Ticket ticket = new TicketBuilder(consoleOutput, consoleInput).build();
         Response responseOnBuild = client.send(
-                new RequestCommand(queryParts[0], ticket)
+                new RequestCommand(
+                        queryParts[0],
+                        new ArrayList<>(Arrays.asList(Arrays.copyOfRange(queryParts, 1, queryParts.length))),
+                        ticket
+                )
         );
         if (responseOnBuild.getResponseStatus() != ResponseStatus.OK) {
             consoleOutput.printError("При создании объекта произошла ошибка. " + responseOnBuild.getMessage());

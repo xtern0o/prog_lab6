@@ -17,8 +17,9 @@ public class HistoryCommand extends Command {
     }
     @Override
     public Response execute(RequestCommand requestCommand) {
-        if (!requestCommand.getArgs().isEmpty()) throw new IllegalArgumentException();
-
+        if (requestCommand.getArgs() != null) {
+            if (!requestCommand.getArgs().isEmpty()) throw new IllegalArgumentException();
+        }
         ArrayList<Command> history = commandManager.getHistory();
         if (history.size() > 5) history = new ArrayList<>(history.subList(history.size() - 5, history.size()));
         if (history.isEmpty()) {

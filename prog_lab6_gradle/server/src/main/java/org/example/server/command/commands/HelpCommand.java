@@ -19,8 +19,9 @@ public class HelpCommand extends Command {
 
     @Override
     public Response execute(RequestCommand requestCommand) {
-        if (!requestCommand.getArgs().isEmpty()) throw new IllegalArgumentException();
-
+        if (requestCommand.getArgs() != null) {
+            if (!requestCommand.getArgs().isEmpty()) throw new IllegalArgumentException();
+        }
         return new Response(
                 ResponseStatus.OK,
                 "Краткая справка по всем командам: \n" +

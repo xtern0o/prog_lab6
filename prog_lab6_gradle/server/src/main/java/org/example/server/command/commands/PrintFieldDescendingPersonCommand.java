@@ -16,8 +16,9 @@ public class PrintFieldDescendingPersonCommand extends Command {
 
     @Override
     public Response execute(RequestCommand requestCommand) {
-        if (!requestCommand.getArgs().isEmpty()) throw new IllegalArgumentException();
-
+        if (requestCommand.getArgs() != null) {
+            if (!requestCommand.getArgs().isEmpty()) throw new IllegalArgumentException();
+        }
         if (CollectionManager.getCollection().isEmpty()) {
             return new Response(ResponseStatus.OK, "Коллекция пуста");
         }

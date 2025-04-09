@@ -6,13 +6,15 @@ import lombok.Getter;
 import lombok.Setter;
 import org.example.common.utils.Validatable;
 
+import java.io.Serializable;
+
 /**
  * Модель координат
  * @author maxkarn
  */
 @Getter
 @Setter
-public class Coordinates implements Validatable, Comparable<Coordinates> {
+public class Coordinates implements Validatable, Comparable<Coordinates>, Serializable {
     private float x;
     private Integer y; //Значение поля должно быть больше -471, Поле не может быть null
 

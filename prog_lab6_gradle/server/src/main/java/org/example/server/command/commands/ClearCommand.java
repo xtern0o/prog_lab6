@@ -20,7 +20,9 @@ public class ClearCommand extends Command {
 
     @Override
     public Response execute(RequestCommand requestCommand) {
-        if (!requestCommand.getArgs().isEmpty()) throw new IllegalArgumentException();
+        if (requestCommand.getArgs() != null) {
+            if (!requestCommand.getArgs().isEmpty()) throw new IllegalArgumentException();
+        }
         collectionManager.clearCollection();
         return new Response(ResponseStatus.OK, "Коллекция была успешно очищена");
     }

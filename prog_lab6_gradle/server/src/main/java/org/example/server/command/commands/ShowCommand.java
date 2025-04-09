@@ -17,8 +17,9 @@ public class ShowCommand extends Command {
 
     @Override
     public Response execute(RequestCommand requestCommand) {
-        if (!requestCommand.getArgs().isEmpty()) throw new IllegalArgumentException();
-
+        if (requestCommand.getArgs() != null) {
+            if (!requestCommand.getArgs().isEmpty()) throw new IllegalArgumentException();
+        }
         PriorityQueue<Ticket> collection = new PriorityQueue<>(CollectionManager.getCollection());
         if (collection.isEmpty()) {
             return new Response(ResponseStatus.OK, "Коллекция пуста");
@@ -26,7 +27,7 @@ public class ShowCommand extends Command {
 
         return new Response(
                 ResponseStatus.OK,
-                "Всего элементов в коллекции: " + + collection.size() + ".\nЭлементы коллекции в порядке возростания приоритета:\n",
+                "Всего элементов в коллекции: " + + collection.size() + ".\nЭлементы коллекции в порядке возростания приоритета:",
                 collection
         );
     }

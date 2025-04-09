@@ -5,6 +5,7 @@ import org.example.common.dtp.RequestCommand;
 import org.example.common.dtp.Response;
 import org.example.common.dtp.ResponseStatus;
 import org.example.common.exceptions.OpenServerException;
+import org.example.server.cli.ConsoleOutput;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -19,6 +20,7 @@ import java.util.Set;
 public class Server {
     private final int port;
     private final RequestCommandHandler requestCommandHandler;
+    private final ConsoleOutput consoleOutput;
 
     private ServerSocketChannel serverSocketChannel;
     private SocketChannel socketChannel;
@@ -27,9 +29,10 @@ public class Server {
 
     public static int BUFFER_SIZE = 1024;
 
-    public Server(int port, RequestCommandHandler requestCommandHandler) {
+    public Server(int port, RequestCommandHandler requestCommandHandler, ConsoleOutput consoleOutput) {
         this.port = port;
         this.requestCommandHandler = requestCommandHandler;
+        this.consoleOutput = consoleOutput;
     }
 
     public void start() throws IOException {
@@ -67,7 +70,7 @@ public class Server {
             } catch (ClosedSelectorException e) {
                 break;
             } catch (SocketException e) {
-                System.out.println("socket exception: " + e.getMessage());
+                consoleOutput.println("socket exception: " + e.getMessage());
             }
 
         }
@@ -79,7 +82,7 @@ public class Server {
         clientChannel.configureBlocking(false);
         clientChannel.register(selector, SelectionKey.OP_READ);
 
-        System.out.println("Установлено соединение: " + clientChannel.getRemoteAddress());
+        consoleOutput.println("Установлено соединение: " + clientChannel.getRemoteAddress());
     }
 
     private void handleRead(SelectionKey key) throws IOException {
@@ -99,7 +102,7 @@ public class Server {
         // ignore stupid requests
         if (receivedData.length == 0) return;
 
-        System.out.println("Получен request от " + clientChannel.getRemoteAddress());
+        consoleOutput.println("Получен request от " + clientChannel.getRemoteAddress());
 
         try {
             RequestCommand requestCommand = (RequestCommand) ObjectSerializator.deserializeObject(receivedData);

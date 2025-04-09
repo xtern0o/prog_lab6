@@ -12,7 +12,7 @@ import java.util.Collection;
 public class Response implements Serializable {
     private final ResponseStatus responseStatus;
     private final String message;
-    private final Collection collection;
+    private final Collection<Ticket> collection;
 
     public Response(ResponseStatus responseStatus, String message) {
         this(responseStatus, message, null);

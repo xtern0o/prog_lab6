@@ -17,8 +17,9 @@ public class RemoveHeadCommand extends Command {
 
     @Override
     public Response execute(RequestCommand requestCommand) {
-        if (!requestCommand.getArgs().isEmpty()) throw new IllegalArgumentException();
-
+        if (requestCommand.getArgs() != null) {
+            if (!requestCommand.getArgs().isEmpty()) throw new IllegalArgumentException();
+        }
         if (collectionManager.getCollectionSize() == 0) {
             return new Response(ResponseStatus.OK, "Коллекция пуста");
         }

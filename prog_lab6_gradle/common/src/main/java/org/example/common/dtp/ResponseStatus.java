@@ -5,7 +5,6 @@ public enum ResponseStatus {
     SERVER_ERROR,
     COMMAND_ERROR,
     ARGS_ERROR,
-    EXIT,
     NO_SUCH_COMMAND,
     OBJECT_REQUIRED
 }
