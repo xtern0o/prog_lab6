@@ -6,7 +6,6 @@ import org.example.common.entity.Ticket;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.PriorityQueue;
 
 @Getter
 @AllArgsConstructor

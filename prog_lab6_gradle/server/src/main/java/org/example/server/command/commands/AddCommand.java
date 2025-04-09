@@ -23,9 +23,11 @@ public class AddCommand extends Command {
         if (requestCommand.getTicketObject() == null) {
             return new Response(ResponseStatus.OBJECT_REQUIRED, "Для выполнения команды нужно создать элемент коллекции");
         } else {
+            System.out.println("создание нового объекта");
             Ticket newTicket = requestCommand.getTicketObject();
             newTicket.setId(CollectionManager.generateFreeId());
             collectionManager.addElement(newTicket);
+            System.out.println("успешно создан");
             return new Response(ResponseStatus.OK, "Объект успешно добавлен в коллекцию");
         }
     }

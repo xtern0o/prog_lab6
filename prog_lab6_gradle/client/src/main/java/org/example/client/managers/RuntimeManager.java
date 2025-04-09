@@ -17,7 +17,7 @@ import java.util.NoSuchElementException;
 public class RuntimeManager implements Runnable {
     private final Printable consoleOutput;
     private final ConsoleInput consoleInput;
-    private final NewClient client;
+    private final SimpleClient client;
     private final RunnableScriptsManager runnableScriptsManager;
 
     @Override
@@ -28,7 +28,7 @@ public class RuntimeManager implements Runnable {
         }));
 
 //        if (!client.connectToServer()) return;
-        client.connectToServer();
+//        client.connectToServer();
 
         consoleOutput.println(
                 "Добро пожаловать в клиентское приложение для работы с коллекцией Ticket.\n" +
@@ -45,6 +45,7 @@ public class RuntimeManager implements Runnable {
                 String[] queryParts = queryString.split(" ");
 
                 // TODO: подумать, как не хардкодить
+                // да ну, 2 команды терпимо
                 processSpecialCommands(queryParts);
 
                 Response response = client.send(
@@ -53,21 +54,26 @@ public class RuntimeManager implements Runnable {
                                 new ArrayList<>(Arrays.asList(Arrays.copyOfRange(queryParts, 1, queryParts.length)))
                         )
                 );
+                if (response == null) {
+                    consoleOutput.println("Запрос пустой");
+                    continue;
+                }
                 this.printResponse(response);
 
                 switch (response.getResponseStatus()) {
-                    case OBJECT_REQUIRED -> buildObject(queryParts);
+                    case OBJECT_REQUIRED -> {
+                        buildObject(queryParts);
+                        System.out.println(Arrays.toString(queryParts));
+                    }
                     case EXIT -> {
                         return;
                     }
                     default -> {}
                 }
-            }
-            catch (NoSuchElementException noSuchElementException) {
+            } catch (NoSuchElementException noSuchElementException) {
                 consoleOutput.println("Конец ввода");
                 return;
-            }
-            catch (Exception exception) {
+            } catch (Exception exception) {
                 consoleOutput.printError(exception.getMessage());
             }
         }

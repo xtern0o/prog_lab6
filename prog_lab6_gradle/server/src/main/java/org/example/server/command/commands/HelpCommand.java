@@ -23,7 +23,7 @@ public class HelpCommand extends Command {
 
         return new Response(
                 ResponseStatus.OK,
-                "Краткая справка по всем командам: " +
+                "Краткая справка по всем командам: \n" +
                         commandManager.getCommands().values().stream()
                                 .map(Command::toString)
                                 .collect(Collectors.joining("\n"))

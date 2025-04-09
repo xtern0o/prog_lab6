@@ -29,7 +29,7 @@ public class Main {
         }
 
 //        OldClient client = new OldClient(host, port, 100, 10, consoleOutput);
-        NewClient client = new NewClient(host, port, 100, 100, consoleOutput);
+        SimpleClient client = new SimpleClient(host, port, 100, 10, consoleOutput, false);
 
         new RuntimeManager(consoleOutput, consoleInput, client, runnableScriptsManager).run();
     }
