@@ -68,6 +68,8 @@ public class CommandManager {
     public Response execute(RequestCommand requestCommand) throws NoSuchCommand {
         if (!commands.containsKey(requestCommand.getCommandName())) throw new NoSuchCommand(requestCommand.getCommandName());
 
+        this.addToHistory(this.getCommands().get(requestCommand.getCommandName()));
+
         Command command = commands.get(requestCommand.getCommandName());
         // TODO: возможно нужно добавить шарма
         Response response = command.execute(requestCommand);
