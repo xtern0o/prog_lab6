@@ -28,6 +28,7 @@ public class RuntimeManager implements Runnable {
             consoleOutput.println("Сервер для управления коллекцией Ticket запущен\n");
             server.start();
         } catch (IOException ioException) {
+            // TODO: EOF EXCEPTION
             throw new RuntimeException(ioException);
         }
 

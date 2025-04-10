@@ -8,6 +8,7 @@ import org.example.common.exceptions.OpenServerException;
 import org.example.server.cli.ConsoleOutput;
 
 import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
@@ -89,15 +90,24 @@ public class Server {
         SocketChannel clientChannel = (SocketChannel) key.channel();
         ByteBuffer buffer = ByteBuffer.allocate(BUFFER_SIZE);
 
-        int bytesRead = clientChannel.read(buffer);
+        ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
+        int bytesRead;
+        while ((bytesRead = clientChannel.read(buffer)) > 0) {
+            buffer.flip();
+            byteStream.write(buffer.array(), 0, bytesRead);
+            buffer.clear();
+        }
+
         if (bytesRead == -1) {
             clientChannel.close();
             return;
         }
 
-        buffer.flip();
-        byte[] receivedData = new byte[buffer.remaining()];
-        buffer.get(receivedData);
+        byte[] receivedData = byteStream.toByteArray();
+
+//        buffer.flip();
+//        byte[] receivedData = new byte[buffer.remaining()];
+//        buffer.get(receivedData);
 
         // ignore stupid requests
         if (receivedData.length == 0) return;
