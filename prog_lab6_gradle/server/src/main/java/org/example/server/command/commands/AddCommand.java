@@ -23,8 +23,6 @@ public class AddCommand extends Command {
             if (!requestCommand.getArgs().isEmpty()) throw new IllegalArgumentException();
         }
 
-        System.out.println("Попали на создание");
-
         if (requestCommand.getTicketObject() == null) {
             return new Response(ResponseStatus.OBJECT_REQUIRED, "Для выполнения команды нужно создать элемент коллекции");
         } else {

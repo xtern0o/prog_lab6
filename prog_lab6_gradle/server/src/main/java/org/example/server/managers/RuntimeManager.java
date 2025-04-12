@@ -2,6 +2,8 @@ package org.example.server.managers;
 
 import lombok.AllArgsConstructor;
 import org.example.common.utils.Printable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -16,6 +18,8 @@ public class RuntimeManager implements Runnable {
     private final Server server;
     private final FileManager fileManager;
 
+    public static final Logger logger = LoggerFactory.getLogger(RuntimeManager.class);
+
     @Override
     public void run() {
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
@@ -25,13 +29,13 @@ public class RuntimeManager implements Runnable {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            consoleOutput.println("⚡ Сервер - В С Ё.");
-            consoleOutput.println("Карнажицкий. Подписаться.");
+
+            logger.info("⚡ Сервер - В С Ё.");
         }));
 
         try {
-            consoleOutput.println("* Ticket collection managing server have been started");
-            consoleOutput.println("> [Ctrl + C] to close server");
+            logger.info("Сервер для управления коллекцией Ticket запущен");
+            consoleOutput.println("> [Ctrl + C], чтобы завершить работу");
             server.start();
         } catch (IOException ioException) {
             throw new RuntimeException(ioException);

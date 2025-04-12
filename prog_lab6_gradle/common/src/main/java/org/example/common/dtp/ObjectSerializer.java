@@ -2,7 +2,10 @@ package org.example.common.dtp;
 
 import java.io.*;
 
-public class ObjectSerializator {
+/**
+ * Класс со статическими методами для сериализации объектов
+ */
+public class ObjectSerializer {
     /**
      * Сериализация объекта в поток байтов
      * @param obj объект для сериализации

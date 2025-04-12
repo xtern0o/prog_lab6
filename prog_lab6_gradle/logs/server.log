@@ -1,0 +1,38 @@
+2025-04-12 19:59:14 [main] INFO  org.example.server.Main             - тест
+2025-04-12 20:03:12 [main] ERROR org.example.server.Main             - Программа принимает 2 аргумента. Корректный запуск программы: java -jar <путь до программы> <файл с данными>.json
+2025-04-12 20:08:43 [main] ERROR org.example.server.Main             - Программа принимает 2 аргумента. Корректный запуск программы: java -jar <путь до программы> <файл с данными>.json
+2025-04-12 20:08:50 [main] ERROR org.example.server.Main             - Программа принимает 2 аргумента. Корректный запуск программы: java -jar <путь до программы> <файл с данными>.json
+2025-04-12 20:09:02 [main] ERROR org.example.server.Main             - Программа принимает 2 аргумента. Корректный запуск программы: java -jar <путь до программы> <файл с данными>.json
+2025-04-12 20:09:10 [main] ERROR org.example.server.Main             - Программа принимает 2 аргумента. Корректный запуск программы: java -jar <путь до программы> <файл с данными>.json
+2025-04-12 20:10:36 [main] ERROR o.e.server.managers.FileManager     - Файла "j.jso" не существует
+2025-04-12 20:11:39 [main] ERROR org.example.server.Main             - Ошибка выполнения программы: java.io.IOException: Недопустимый порт
+2025-04-12 20:21:42 [main] INFO  o.e.server.managers.RuntimeManager  - Сервер для управления коллекцией Ticket запущен
+2025-04-12 20:21:42 [main] ERROR org.example.server.Main             - Ошибка выполнения программы: java.io.IOException: Недопустимый порт
+2025-04-12 20:21:42 [Thread-0] INFO  org.example.server.managers.Server  - Сокеты и селекторы были закрыты
+2025-04-12 20:21:42 [Thread-0] INFO  o.e.server.managers.RuntimeManager  - ⚡ Сервер - В С Ё.
+2025-04-12 20:21:54 [main] INFO  o.e.server.managers.RuntimeManager  - Сервер для управления коллекцией Ticket запущен
+2025-04-12 20:22:08 [main] INFO  org.example.server.managers.Server  - Connected to: /127.0.0.1:34786
+2025-04-12 20:22:08 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:34786
+2025-04-12 20:22:08 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "d"; ARGS: "[]"
+2025-04-12 20:22:08 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:34786" successfully
+2025-04-12 20:23:28 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:34786
+2025-04-12 20:23:28 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "show"; ARGS: "[]"
+2025-04-12 20:23:28 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:34786" successfully
+2025-04-12 20:23:43 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:34786
+2025-04-12 20:23:43 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "add"; ARGS: "[]"
+2025-04-12 20:23:43 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:34786" successfully
+2025-04-12 20:23:48 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:34786
+2025-04-12 20:23:48 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "add"; ARGS: "[]"
+2025-04-12 20:23:48 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:34786" successfully
+2025-04-12 20:24:14 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:34786
+2025-04-12 20:24:14 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "[A"; ARGS: "[]"
+2025-04-12 20:24:14 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:34786" successfully
+2025-04-12 20:24:24 [Thread-0] INFO  org.example.server.managers.Server  - Сокеты и селекторы были закрыты
+2025-04-12 20:24:24 [Thread-0] INFO  o.e.server.managers.RuntimeManager  - ⚡ Сервер - В С Ё.
+2025-04-12 20:24:43 [main] INFO  o.e.server.managers.RuntimeManager  - Сервер для управления коллекцией Ticket запущен
+2025-04-12 20:24:46 [main] INFO  org.example.server.managers.Server  - Connected to: /127.0.0.1:58370
+2025-04-12 20:24:46 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:58370
+2025-04-12 20:24:46 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "d"; ARGS: "[]"
+2025-04-12 20:24:46 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:58370" successfully (COMMAND_ERROR)
+2025-04-12 20:25:20 [Thread-0] INFO  org.example.server.managers.Server  - Сокеты и селекторы были закрыты
+2025-04-12 20:25:20 [Thread-0] INFO  o.e.server.managers.RuntimeManager  - ⚡ Сервер - В С Ё.

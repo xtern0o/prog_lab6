@@ -1,6 +1,6 @@
 package org.example.client.managers;
 
-import org.example.common.dtp.ObjectSerializator;
+import org.example.common.dtp.ObjectSerializer;
 import org.example.common.dtp.RequestCommand;
 import org.example.common.dtp.Response;
 import org.example.common.dtp.ResponseStatus;
@@ -9,8 +9,6 @@ import org.example.common.utils.Printable;
 import java.io.Closeable;
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.net.SocketException;
-import java.net.SocketTimeoutException;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
 import java.nio.channels.UnresolvedAddressException;
@@ -87,7 +85,7 @@ public class SimpleClient implements Closeable {
             }
 
             // Сериализация и отправка запроса
-            ByteBuffer requestBuffer = ByteBuffer.wrap(ObjectSerializator.serializeObject(requestCommand));
+            ByteBuffer requestBuffer = ByteBuffer.wrap(ObjectSerializer.serializeObject(requestCommand));
             while (requestBuffer.hasRemaining()) socketChannel.write(requestBuffer);
 
             // Чтение ответа
@@ -112,7 +110,7 @@ public class SimpleClient implements Closeable {
             responseBuffer.get(responseBytes);
 
             // Десериализация ответа
-            return (Response) ObjectSerializator.deserializeObject(responseBytes);
+            return (Response) ObjectSerializer.deserializeObject(responseBytes);
         } catch (IOException ioException) {
             reconnect();
             if (!isConnected()) return new Response(ResponseStatus.SERVER_ERROR, "Ошибка сервера: " + ioException.getMessage());

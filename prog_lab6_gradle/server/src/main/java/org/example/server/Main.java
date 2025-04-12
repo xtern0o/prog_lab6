@@ -5,6 +5,8 @@ import org.example.server.cli.ConsoleOutput;
 import org.example.server.command.Command;
 import org.example.server.command.commands.*;
 import org.example.server.managers.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -16,6 +18,8 @@ public class Main {
     static CommandManager commandManager = new CommandManager();
     static RequestCommandHandler requestCommandHandler = new RequestCommandHandler(commandManager);
     static ConsoleOutput consoleOutput = new ConsoleOutput();
+
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) {
         if (!validateArgs(args)) return;
@@ -51,30 +55,24 @@ public class Main {
         try {
             runtimeManager.run();
         } catch (RuntimeException runtimeException) {
-            consoleOutput.printError("Ошибка выполнения программы: " + runtimeException.getMessage());
+            logger.error("Ошибка выполнения программы: {}", runtimeException.getMessage());
         }
 
     }
 
     public static boolean validateArgs(String[] args) {
-        if (args.length == 0) {
-            consoleOutput.printError("Программа принимает 2 аргумента. Корректный запуск программы: java -jar <путь до программы> <файл с данными>.json\nДо свидания! :)");
+        if (args.length != 2) {
+            logger.error("Неверное количество аргументов");
+            logger.info("Корректный запуск программы: java -jar <путь до программы> <файл с данными>.json <порт прослушивания>");
             return false;
         }
-        else if (args.length == 1) {
-            consoleOutput.printError("Программа принимает 2 аргумента. Корректный запуск программы: java -jar <путь до программы> <файл с данными>.json\nДо свидания! :)");
+        try {
+            port = Integer.parseInt(args[1]);
+        } catch (NumberFormatException e) {
+            logger.error("Некорректный порт");
             return false;
-        } else if (args.length < 3) {
-            try {
-                port = Integer.parseInt(args[1]);
-            } catch (NumberFormatException e) {
-                consoleOutput.printError("Некорректный порт");
-                return false;
-            }
-            return true;
         }
-        consoleOutput.printError("Программа принимает 2 аргумента. Корректный запуск программы: java -jar <путь до программы> <файл с данными>.json\nДо свидания! :)");
-        return false;
+        return true;
     }
 
 }

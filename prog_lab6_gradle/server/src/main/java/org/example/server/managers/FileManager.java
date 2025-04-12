@@ -7,6 +7,8 @@ import lombok.Getter;
 import org.example.common.entity.Ticket;
 import org.example.common.utils.Printable;
 import org.example.common.utils.Validatable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -22,6 +24,8 @@ public class FileManager implements Validatable {
     @Getter
     private final File file;
     private final Printable consoleOutput;
+
+    public static final Logger logger = LoggerFactory.getLogger(FileManager.class);
 
     public FileManager(File file, Printable consoleOutput) {
         this.file = file;
@@ -42,15 +46,15 @@ public class FileManager implements Validatable {
     @Override
     public boolean validate() {
         if (!file.exists()) {
-            consoleOutput.printError("Файла, введенного в качестве аргумента выполнения программы не существует. До свидания! :)");
+            logger.error("Файла \"{}\" не существует", file.getName());
             return false;
         }
         if (!file.canRead() || !file.canWrite()) {
-            consoleOutput.printError("Недостаточно прав: файл недоступен для чтения и(или) для записи, программа может работать некорректно. До свидания! :)");
+            logger.error("Недостаточно прав: файл \"{}\" недоступен для чтения и/или записи.", file.getName());
             return false;
         }
         if (!Objects.equals(getFileFormat(file), "json")) {
-            consoleOutput.printError("Программа работает только с файлами json. Выберите корректный файл \nКорректный запуск программы: java -jar prog_lab5-1.0-jar-with-dependencies.jar <файл с данными>.json");
+            logger.error("Программа работает только с файлами .json");
             return false;
         }
         return true;
@@ -92,7 +96,7 @@ public class FileManager implements Validatable {
 
             // Проверяем, пустой ли JSON
             if (json.isEmpty() || json.equals("{}")) {
-                consoleOutput.printError("Файл JSON пустой. Используется пустая коллекция.");
+                logger.warn("Файл JSON пустой. Используется пустая коллекция");
                 CollectionManager.setCollection(new PriorityQueue<>());
                 return;
             }
@@ -112,8 +116,7 @@ public class FileManager implements Validatable {
             }
 
         } catch (IOException e) {
-            consoleOutput.printError("Проверьте корректность .json файла!!! Подробности ниже");
-            consoleOutput.printError(e.getMessage());
+            logger.error("Проверьте корректность json файла. Подробности: {}", e.getMessage());
             System.exit(-1);
         }
     }

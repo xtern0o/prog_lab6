@@ -69,9 +69,6 @@ public class CommandManager {
         this.addToHistory(this.getCommands().get(requestCommand.getCommandName()));
 
         Command command = commands.get(requestCommand.getCommandName());
-        // TODO: возможно нужно добавить шарма
-        Response response = command.execute(requestCommand);
-
-        return response;
+        return command.execute(requestCommand);
     }
 }
