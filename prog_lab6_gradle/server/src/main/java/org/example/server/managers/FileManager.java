@@ -68,7 +68,8 @@ public class FileManager implements Validatable {
 
             printWriter.print(objectMapper.writeValueAsString(collection));
 
-        } catch (JsonProcessingException e) {
+        } catch (JsonProcessingException | NoClassDefFoundError e) {
+            // TODO: понять откуда берется NoClassDefFoundError
             throw new RuntimeException(e);
         }
     }

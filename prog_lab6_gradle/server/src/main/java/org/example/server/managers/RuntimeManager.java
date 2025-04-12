@@ -6,6 +6,10 @@ import org.example.common.utils.Printable;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+/**
+ * Класс для управления жизненным циклом сервера (запуск, завершение работы)
+ * @author maxkarn
+ */
 @AllArgsConstructor
 public class RuntimeManager implements Runnable {
     private final Printable consoleOutput;
@@ -21,17 +25,17 @@ public class RuntimeManager implements Runnable {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            consoleOutput.println("Сервер завершил свою работу.");
+            consoleOutput.println("⚡ Сервер - В С Ё.");
+            consoleOutput.println("Карнажицкий. Подписаться.");
         }));
 
         try {
-            consoleOutput.println("Сервер для управления коллекцией Ticket запущен\n");
+            consoleOutput.println("* Ticket collection managing server have been started");
+            consoleOutput.println("> [Ctrl + C] to close server");
             server.start();
         } catch (IOException ioException) {
-            // TODO: EOF EXCEPTION
             throw new RuntimeException(ioException);
         }
-
     }
 
     public void saveCollection() {
@@ -45,5 +49,4 @@ public class RuntimeManager implements Runnable {
             throw new RuntimeException(fileNotFoundException);
         }
     }
-
 }

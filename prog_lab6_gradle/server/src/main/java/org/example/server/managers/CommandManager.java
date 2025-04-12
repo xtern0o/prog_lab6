@@ -1,5 +1,6 @@
 package org.example.server.managers;
 
+import lombok.Getter;
 import org.example.common.dtp.RequestCommand;
 import org.example.common.dtp.Response;
 import org.example.common.exceptions.NoSuchCommand;
@@ -13,8 +14,21 @@ import java.util.HashMap;
  * Менеджер для управления доступными командами
  * @author maxkarn
  */
+@Getter
 public class CommandManager {
+    /**
+     * -- GETTER --
+     *  Получение списка доступных команд
+     *
+     * @return HashMap{commandName, command}
+     */
     private final HashMap<String, Command> commands = new HashMap<>();
+    /**
+     * -- GETTER --
+     *  Получение истории команд в текущей сессии
+     *
+     * @return Использованные команды ArrayList<Command>
+     */
     private final ArrayList<Command> history = new ArrayList<>();
 
     /**
@@ -41,22 +55,6 @@ public class CommandManager {
      */
     public void addToHistory(Command command) {
         history.add(command);
-    }
-
-    /**
-     * Получение списка доступных команд
-     * @return HashMap{commandName, command}
-     */
-    public HashMap<String, Command> getCommands() {
-        return commands;
-    }
-
-    /**
-     * Получение истории команд в текущей сессии
-     * @return Использованные команды ArrayList<Command>
-     */
-    public ArrayList<Command> getHistory() {
-        return history;
     }
 
     /**

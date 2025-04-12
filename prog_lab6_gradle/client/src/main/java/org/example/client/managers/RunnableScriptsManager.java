@@ -44,6 +44,14 @@ public class RunnableScriptsManager implements InputReader {
     }
 
     /**
+     * Очищение списка запущенных файлов
+     */
+    public static void clear() {
+        launchedFiles.clear();
+        readers.clear();
+    }
+
+    /**
      * Метод для чтения перенаправленного потока ввода на файл
      * @throws IOException если файл не найден (гарантируется наличие)
      */

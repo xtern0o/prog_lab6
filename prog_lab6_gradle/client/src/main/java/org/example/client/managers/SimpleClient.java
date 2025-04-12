@@ -26,8 +26,6 @@ public class SimpleClient implements Closeable {
     private SocketChannel socketChannel;
     private int currentReconnectionAttempt;
 
-    private RequestCommand pendingRequest;
-
     public static long TIMEOUT_MS = 5000;
 
     public SimpleClient(

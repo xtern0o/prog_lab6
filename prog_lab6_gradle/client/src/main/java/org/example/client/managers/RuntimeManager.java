@@ -9,6 +9,8 @@ import org.example.common.dtp.ResponseStatus;
 import org.example.common.entity.Ticket;
 import org.example.common.utils.Printable;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
@@ -45,7 +47,7 @@ public class RuntimeManager implements Runnable {
                 String[] queryParts = queryString.split(" ");
 
                 // TODO: подумать, как не хардкодить
-                // да ну, 2 команды терпимо
+                // ну, 1 команда терпимо
                 processSpecialCommands(queryParts);
 
                 Response response = client.send(
@@ -98,7 +100,68 @@ public class RuntimeManager implements Runnable {
             case SERVER_ERROR -> {
                 consoleOutput.printError(response.getMessage());
             }
+            case EXECUTE_SCRIPT -> {
+                handleExecuteScript(response);
+            }
             default -> {}
+        }
+    }
+
+    public void handleExecuteScript(Response response) {
+        try {
+            File scriptFile = new File(response.getMessage());
+            if (!scriptFile.exists()) throw new FileNotFoundException(String.format("Исполняемый файл \"%s\" не найден", scriptFile.getName()));
+
+            consoleOutput.println(String.format("* Исполнение файла \"%s\"", scriptFile.getName()));
+
+            if (RunnableScriptsManager.checkIfLaunchedInStack(scriptFile)) {
+                consoleOutput.printError(String.format("Исполняемый файл %s был вызван более одного раза в рамках одного скрипта. Исправьте код.", scriptFile.getName()));
+                return;
+            }
+
+            ConsoleInput.setFileMode(true);
+            RunnableScriptsManager.addFile(scriptFile);
+
+            for (String line = runnableScriptsManager.readLine(); line != null; line = runnableScriptsManager.readLine()) {
+                String queryString = line.trim();
+
+                if (queryString.isBlank()) continue;
+
+                String[] queryParts = queryString.split(" ");
+
+                Response response1 = client.send(
+                        new RequestCommand(
+                                queryParts[0],
+                                new ArrayList<>(Arrays.asList(Arrays.copyOfRange(queryParts, 1, queryParts.length)))
+                        )
+                );
+
+                if (response1 == null) {
+                    consoleOutput.println("Запрос пустой");
+                    continue;
+                }
+                this.printResponse(response1);
+
+                switch (response1.getResponseStatus()) {
+                    case OBJECT_REQUIRED -> {
+                        buildObject(queryParts);
+                        System.out.println(Arrays.toString(queryParts));
+                    }
+                    default -> {}
+                }
+            }
+
+            consoleOutput.println("* Завершение исполнения файла " + scriptFile.getName());
+
+            RunnableScriptsManager.removeFile(scriptFile);
+
+            ConsoleInput.setFileMode(false);
+
+        } catch (FileNotFoundException fileNotFoundException) {
+            consoleOutput.printError(String.format("Исполняемый файл \"%s\" не найден", response.getMessage()));
+        } catch (Exception exception) {
+            RunnableScriptsManager.clear();
+            throw new RuntimeException(exception);
         }
     }
 

@@ -4,6 +4,7 @@ import org.example.common.dtp.RequestCommand;
 import org.example.common.dtp.Response;
 import org.example.common.dtp.ResponseStatus;
 import org.example.common.entity.Ticket;
+import org.example.common.exceptions.ValidationError;
 import org.example.server.command.Command;
 import org.example.server.managers.CollectionManager;
 
@@ -27,7 +28,11 @@ public class UpdateCommand extends Command {
             if (collectionManager.removeById(id)) {
                 Ticket newTicket = requestCommand.getTicketObject();
                 newTicket.setId(id);
-                collectionManager.addElement(newTicket);
+                try {
+                    collectionManager.addElement(newTicket);
+                } catch (ValidationError validationError) {
+                    return new Response(ResponseStatus.VALIDATION_ERROR, "Одно или несколько полей нового объекта не соответствуют требованиям");
+                }
                 return new Response(ResponseStatus.OK, String.format("Объект с id=%d был учпешно изменен", id));
             }
             else {

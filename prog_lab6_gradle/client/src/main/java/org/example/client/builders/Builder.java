@@ -77,7 +77,9 @@ public abstract class Builder<T> {
         while (true) {
             consoleOutput.print(String.format("%s (%s)\n%s\n> ", valueName, valueInfo, Arrays.toString(enumClass.getEnumConstants())));
             try {
-                String input = consoleInput.readLine().trim();
+                String input = consoleInput.readLine();
+                if (input == null) throw new IllegalArgumentException();
+                input = input.trim();
                 if (input.isBlank()) return null;
                 T value = Enum.valueOf(enumClass, input.toUpperCase());
                 if (validateRule.test(value)) return value;

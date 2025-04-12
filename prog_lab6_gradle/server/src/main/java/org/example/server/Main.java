@@ -39,8 +39,8 @@ public class Main {
                 new RemoveHeadCommand(collectionManager),
                 new FilterStartsWithNameCommand(collectionManager),
                 new PrintUniqueDiscountCommand(),
-                new PrintFieldDescendingPersonCommand()
-//                new ExecuteScriptCommand(consoleOutput, commandManager)
+                new PrintFieldDescendingPersonCommand(),
+                new ExecuteScriptCommand()
         )
         );
         commandManager.addCommands(commands);
@@ -51,18 +51,18 @@ public class Main {
         try {
             runtimeManager.run();
         } catch (RuntimeException runtimeException) {
-            consoleOutput.printError("Ощибка выполнения программы: " + runtimeException.getMessage());
+            consoleOutput.printError("Ошибка выполнения программы: " + runtimeException.getMessage());
         }
 
     }
 
     public static boolean validateArgs(String[] args) {
         if (args.length == 0) {
-            consoleOutput.printError("Вы не ввели путь файла.\nКорректный запуск программы: java -jar <путь до программы> <файл с данными>.json\nДо свидания! :)");
+            consoleOutput.printError("Программа принимает 2 аргумента. Корректный запуск программы: java -jar <путь до программы> <файл с данными>.json\nДо свидания! :)");
             return false;
         }
         else if (args.length == 1) {
-            consoleOutput.printError("Программа принимает 2 аргумента. До свидания! :)");
+            consoleOutput.printError("Программа принимает 2 аргумента. Корректный запуск программы: java -jar <путь до программы> <файл с данными>.json\nДо свидания! :)");
             return false;
         } else if (args.length < 3) {
             try {
@@ -71,9 +71,10 @@ public class Main {
                 consoleOutput.printError("Некорректный порт");
                 return false;
             }
-
+            return true;
         }
-        return true;
+        consoleOutput.printError("Программа принимает 2 аргумента. Корректный запуск программы: java -jar <путь до программы> <файл с данными>.json\nДо свидания! :)");
+        return false;
     }
 
 }

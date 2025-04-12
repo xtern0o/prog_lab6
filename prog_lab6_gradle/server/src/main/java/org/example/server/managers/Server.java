@@ -4,14 +4,11 @@ import org.example.common.dtp.ObjectSerializator;
 import org.example.common.dtp.RequestCommand;
 import org.example.common.dtp.Response;
 import org.example.common.dtp.ResponseStatus;
-import org.example.common.exceptions.OpenServerException;
 import org.example.server.cli.ConsoleOutput;
 
-import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.net.SocketAddress;
 import java.net.SocketException;
 import java.nio.ByteBuffer;
 import java.nio.channels.*;
@@ -24,7 +21,6 @@ public class Server {
     private final ConsoleOutput consoleOutput;
 
     private ServerSocketChannel serverSocketChannel;
-    private SocketChannel socketChannel;
     private Selector selector;
     private boolean isRunning = false;
 
@@ -64,14 +60,12 @@ public class Server {
                     else if (key.isReadable()) {
                         handleRead(key);
                     }
-//                    else if (key.isWritable()) {
-//                        handleWrite(key);
-//                    }
                 }
             } catch (ClosedSelectorException e) {
+
                 break;
             } catch (SocketException e) {
-                consoleOutput.println("socket exception: " + e.getMessage());
+                consoleOutput.printError("Socket error: " + e.getMessage());
             }
 
         }
@@ -83,7 +77,7 @@ public class Server {
         clientChannel.configureBlocking(false);
         clientChannel.register(selector, SelectionKey.OP_READ);
 
-        consoleOutput.println("Установлено соединение: " + clientChannel.getRemoteAddress());
+        consoleOutput.println("> Connected to: " + clientChannel.getRemoteAddress());
     }
 
     private void handleRead(SelectionKey key) throws IOException {
@@ -105,22 +99,22 @@ public class Server {
 
         byte[] receivedData = byteStream.toByteArray();
 
-//        buffer.flip();
-//        byte[] receivedData = new byte[buffer.remaining()];
-//        buffer.get(receivedData);
-
         // ignore stupid requests
         if (receivedData.length == 0) return;
 
-        consoleOutput.println("Получен request от " + clientChannel.getRemoteAddress());
+        consoleOutput.println("* Got request from " + clientChannel.getRemoteAddress());
 
         try {
             RequestCommand requestCommand = (RequestCommand) ObjectSerializator.deserializeObject(receivedData);
             Response response = requestCommandHandler.handleRequestCommand(requestCommand);
             clientChannel.write(ByteBuffer.wrap(ObjectSerializator.serializeObject(response)));
+            consoleOutput.println("* Command: " + requestCommand.getCommandName() + " Args: " + requestCommand.getArgs());
+            consoleOutput.println("* Sent response to " + clientChannel.getRemoteAddress() + " successfully");
+
         } catch (ClassNotFoundException e) {
             Response errorResponse = new Response(ResponseStatus.COMMAND_ERROR, "Некорректный объект команды");
             clientChannel.write(ByteBuffer.wrap(ObjectSerializator.serializeObject(errorResponse)));
+            consoleOutput.printError("* Got incorrect object. Sent COMMAND_ERROR response to " + clientChannel.getRemoteAddress());
         }
     }
 
@@ -129,6 +123,8 @@ public class Server {
         selector.wakeup();
         serverSocketChannel.close();
         selector.close();
+
+        consoleOutput.println("* Sockets and selectors have been closed");
     }
 
 }

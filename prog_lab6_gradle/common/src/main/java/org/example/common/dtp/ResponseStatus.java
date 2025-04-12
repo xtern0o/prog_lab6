@@ -6,5 +6,7 @@ public enum ResponseStatus {
     COMMAND_ERROR,
     ARGS_ERROR,
     NO_SUCH_COMMAND,
-    OBJECT_REQUIRED
+    OBJECT_REQUIRED,
+    VALIDATION_ERROR,
+    EXECUTE_SCRIPT
 }

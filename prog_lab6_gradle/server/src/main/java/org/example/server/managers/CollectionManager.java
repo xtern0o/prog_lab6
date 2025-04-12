@@ -7,6 +7,10 @@ import org.example.common.exceptions.ValidationError;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Класс для управления коллекцией
+ * @author maxkarn
+ */
 public class CollectionManager {
     /**
      * Коллекция билетов
