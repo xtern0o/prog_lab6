@@ -53,7 +53,6 @@ public class RunnableScriptsManager implements InputReader {
 
     /**
      * Метод для чтения перенаправленного потока ввода на файл
-     * @throws IOException если файл не найден (гарантируется наличие)
      */
     @Override
     public String readLine() {

@@ -1,6 +1,5 @@
 package org.example.server;
 
-import org.example.common.utils.Printable;
 import org.example.server.cli.ConsoleOutput;
 import org.example.server.command.Command;
 import org.example.server.command.commands.*;
@@ -62,8 +61,8 @@ public class Main {
 
     public static boolean validateArgs(String[] args) {
         if (args.length != 2) {
-            logger.error("Неверное количество аргументов");
-            logger.info("Корректный запуск программы: java -jar <путь до программы> <файл с данными>.json <порт прослушивания>");
+            logger.error("Неверное количество аргументов при запуске");
+            consoleOutput.println("* Корректный запуск программы: java -jar <путь до программы> <файл с данными>.json <порт прослушивания>");
             return false;
         }
         try {

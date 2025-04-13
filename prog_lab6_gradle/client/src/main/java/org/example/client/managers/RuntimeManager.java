@@ -15,6 +15,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
+/**
+ * Класс, отвечающий за MainLoop и соединение действий пользователя и клиента
+ */
 @AllArgsConstructor
 public class RuntimeManager implements Runnable {
     private final Printable consoleOutput;
@@ -22,15 +25,14 @@ public class RuntimeManager implements Runnable {
     private final SimpleClient client;
     private final RunnableScriptsManager runnableScriptsManager;
 
+    /**
+     * Запуск клиента
+     */
     @Override
     public void run() {
-        // hook, срабатывающий при завершении программы
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             consoleOutput.println("Завершение работы программы. До свидания!!");
         }));
-
-//        if (!client.connectToServer()) return;
-//        client.connectToServer();
 
         consoleOutput.println(
                 "Добро пожаловать в клиентское приложение для работы с коллекцией Ticket.\n" +
@@ -65,7 +67,6 @@ public class RuntimeManager implements Runnable {
                 switch (response.getResponseStatus()) {
                     case OBJECT_REQUIRED -> {
                         buildObject(queryParts);
-                        System.out.println(Arrays.toString(queryParts));
                     }
                     default -> {}
                 }
@@ -78,6 +79,10 @@ public class RuntimeManager implements Runnable {
         }
     }
 
+    /**
+     * Парсинг ответа сервера в понятном для пользователя формате
+     * @param response ответ сервера
+     */
     public void printResponse(Response response) {
         switch (response.getResponseStatus()) {
             case OK -> {
@@ -94,10 +99,7 @@ public class RuntimeManager implements Runnable {
             case ARGS_ERROR -> {
                 consoleOutput.printError("Некорректное использование аргументов команды. " + response.getMessage());
             }
-            case NO_SUCH_COMMAND -> {
-                consoleOutput.printError("Команда не найдена. " + response.getMessage());
-            }
-            case SERVER_ERROR -> {
+            case NO_SUCH_COMMAND, SERVER_ERROR -> {
                 consoleOutput.printError(response.getMessage());
             }
             case EXECUTE_SCRIPT -> {
@@ -107,6 +109,10 @@ public class RuntimeManager implements Runnable {
         }
     }
 
+    /**
+     * Метод для выполнения пользовательского скрипта из файла
+     * @param response ответ сервера
+     */
     public void handleExecuteScript(Response response) {
         try {
             File scriptFile = new File(response.getMessage());
@@ -165,6 +171,11 @@ public class RuntimeManager implements Runnable {
         }
     }
 
+    /**
+     * Создание объекта при запросе со стороны сервера
+     * @param queryParts части пользовательской команды, которая послужила инициатором необходимости отправки
+     *                   нового объекта на сервер
+     */
     public void buildObject(String[] queryParts) {
         Ticket ticket = new TicketBuilder(consoleOutput, consoleInput).build();
         Response responseOnBuild = client.send(
@@ -182,6 +193,11 @@ public class RuntimeManager implements Runnable {
         }
     }
 
+    /**
+     * Метод для выполнения команд на стороне клиента
+     * (при наличии более двух команд рекомандуется обрабатывать их по паттерну COMMAND как на сервере)
+     * @param queryParts
+     */
     public void processSpecialCommands(String[] queryParts) {
         if (queryParts[0].equals("exit")) {
             System.exit(0);

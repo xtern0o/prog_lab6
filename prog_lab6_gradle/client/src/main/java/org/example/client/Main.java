@@ -28,7 +28,6 @@ public class Main {
             return;
         }
 
-//        OldClient client = new OldClient(host, port, 100, 10, consoleOutput);
         SimpleClient client = new SimpleClient(host, port, 100, 10, consoleOutput, false);
 
         new RuntimeManager(consoleOutput, consoleInput, client, runnableScriptsManager).run();

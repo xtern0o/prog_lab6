@@ -22,6 +22,10 @@ public class UpdateCommand extends Command {
 
         try {
             int id = Integer.parseInt(requestCommand.getArgs().get(0));
+            if (collectionManager.getElementById(id) == null) {
+                return new Response(ResponseStatus.ARGS_ERROR, String.format("Объекта с id=%d не существует", id));
+            }
+
             if (requestCommand.getTicketObject() == null) {
                 return new Response(ResponseStatus.OBJECT_REQUIRED, "Для выполнения команды нужно создать элемент коллекции");
             }

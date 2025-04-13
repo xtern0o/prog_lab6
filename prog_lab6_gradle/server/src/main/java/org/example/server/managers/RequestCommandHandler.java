@@ -27,7 +27,7 @@ public class RequestCommandHandler {
         try {
             return commandManager.execute(requestCommand);
         } catch (NoSuchCommand noSuchCommand) {
-            return new Response(ResponseStatus.COMMAND_ERROR, "Такой команды нет. Воспользуйтесь help для того, чтобы узнать больше о доступных командах");
+            return new Response(ResponseStatus.NO_SUCH_COMMAND, "Команда \"" + requestCommand.getCommandName() + "\" не найдена");
         } catch (IllegalArgumentException illegalArgumentException) {
             return new Response(ResponseStatus.ARGS_ERROR, "Неверное использование аргументов. " + illegalArgumentException.getMessage());
         }

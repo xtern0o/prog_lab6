@@ -13,12 +13,30 @@ import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
 import java.nio.channels.UnresolvedAddressException;
 
+/**
+ * Класс клиента, отвечающий за общение с сервером
+ */
 public class SimpleClient implements Closeable {
     private final int port;
+
     private final String host;
+
+    /**
+     * максимальное число попыток переподключений прежде чем эти попытки прекратятся...
+     */
     private final int maxReconnectionAttempts;
+
+    /**
+     * Задержка между переподключениями в мс
+     */
     private final int reconnectionDelay;
+
     private final Printable consoleOutput;
+
+    /**
+     * Флаг: true -> завершить работу клиента при неудаче попыток соединения с сервером;
+     * false -> не завершать работу
+     */
     private boolean exitIfUnsuccessfulConnection;
 
     private SocketChannel socketChannel;
@@ -42,6 +60,10 @@ public class SimpleClient implements Closeable {
         this.exitIfUnsuccessfulConnection = exitIfUnsuccessfulConnection;
     }
 
+    /**
+     * Метод для соединения с сервером
+     * @return true если удачно, false если анлак тотальный
+     */
     public boolean connectToServer() {
         try {
             socketChannel = SocketChannel.open();
@@ -73,6 +95,11 @@ public class SimpleClient implements Closeable {
         return isConnected();
     }
 
+    /**
+     * Отправка запроса на сервер...
+     * @param requestCommand реквест аа заеблся докать это все
+     * @return ответ в формте Response
+     */
     public Response send(RequestCommand requestCommand) {
         if (requestCommand.isEmpty()) return new Response(ResponseStatus.COMMAND_ERROR, "Ответ пустой");
 
@@ -187,6 +214,10 @@ public class SimpleClient implements Closeable {
         }
     }
 
+    /**
+     * Соединены или нет.
+     * @return ДА или НЕТ.
+     */
     public boolean isConnected() {
         return socketChannel != null && socketChannel.isConnected();
     }

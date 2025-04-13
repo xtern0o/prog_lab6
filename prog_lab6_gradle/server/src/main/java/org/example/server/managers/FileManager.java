@@ -74,6 +74,7 @@ public class FileManager implements Validatable {
 
         } catch (JsonProcessingException | NoClassDefFoundError e) {
             // TODO: понять откуда берется NoClassDefFoundError
+            // UPD: fixed
             throw new RuntimeException(e);
         }
     }

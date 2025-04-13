@@ -2,7 +2,9 @@ package org.example.common.exceptions;
 
 import java.io.IOException;
 
-
+/**
+ * Исключение при некорректном названии команды
+ */
 public class NoSuchCommand extends IOException {
     String userInput;
 

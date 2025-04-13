@@ -7,11 +7,25 @@ import org.example.common.entity.Ticket;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Класс запроса с клиента на сервер
+ */
 @AllArgsConstructor
 @Getter
 public class RequestCommand implements Serializable {
+    /**
+     * Название команды
+     */
     private final String commandName;
+
+    /**
+     * Аргументы в строчном формате
+     */
     private final ArrayList<String> args;
+
+    /**
+     * Объект Ticket (например при передаче add или update)
+     */
     private final Ticket ticketObject;
 
     public RequestCommand(String commandName, ArrayList<String> args) {
