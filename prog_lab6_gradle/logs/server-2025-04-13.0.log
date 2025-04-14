@@ -1,0 +1,145 @@
+2025-04-13 14:31:30 [main] INFO  o.e.server.managers.RuntimeManager  - Сервер для управления коллекцией Ticket запущен
+2025-04-13 14:31:53 [main] INFO  org.example.server.managers.Server  - Connected to: /127.0.0.1:51722
+2025-04-13 14:31:53 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:51722
+2025-04-13 14:31:53 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "s"; ARGS: "[]"
+2025-04-13 14:31:53 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:51722" successfully (COMMAND_ERROR)
+2025-04-13 14:31:55 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:51722
+2025-04-13 14:31:55 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "lol"; ARGS: "[]"
+2025-04-13 14:31:55 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:51722" successfully (COMMAND_ERROR)
+2025-04-13 14:32:13 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:51722
+2025-04-13 14:32:13 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "help"; ARGS: "[]"
+2025-04-13 14:32:13 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:51722" successfully (OK)
+2025-04-13 14:32:19 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:51722
+2025-04-13 14:32:19 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "show"; ARGS: "[]"
+2025-04-13 14:32:19 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:51722" successfully (OK)
+2025-04-13 14:32:27 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:51722
+2025-04-13 14:32:27 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "remove_head"; ARGS: "[]"
+2025-04-13 14:32:27 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:51722" successfully (OK)
+2025-04-13 14:32:30 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:51722
+2025-04-13 14:32:30 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "show"; ARGS: "[]"
+2025-04-13 14:32:30 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:51722" successfully (OK)
+2025-04-13 14:32:35 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:51722
+2025-04-13 14:32:35 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "update"; ARGS: "[1]"
+2025-04-13 14:32:35 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:51722" successfully (OBJECT_REQUIRED)
+2025-04-13 14:32:49 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:51722
+2025-04-13 14:32:49 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "update"; ARGS: "[1]"
+2025-04-13 14:32:49 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:51722" successfully (ARGS_ERROR)
+2025-04-13 14:36:37 [main] INFO  org.example.server.managers.Server  - Connected to: /127.0.0.1:46558
+2025-04-13 14:36:37 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:46558
+2025-04-13 14:36:37 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "d"; ARGS: "[]"
+2025-04-13 14:36:37 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:46558" successfully (COMMAND_ERROR)
+2025-04-13 14:38:49 [main] WARN  o.e.server.managers.FileManager     - Файл JSON пустой. Используется пустая коллекция
+2025-04-13 14:38:49 [main] INFO  o.e.server.managers.RuntimeManager  - Сервер для управления коллекцией Ticket запущен
+2025-04-13 14:38:58 [main] INFO  org.example.server.managers.Server  - Connected to: /127.0.0.1:36102
+2025-04-13 14:38:58 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:36102
+2025-04-13 14:38:58 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "в"; ARGS: "[]"
+2025-04-13 14:38:58 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:36102" successfully (NO_SUCH_COMMAND)
+2025-04-13 14:39:18 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:36102
+2025-04-13 14:39:18 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "help"; ARGS: "[]"
+2025-04-13 14:39:18 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:36102" successfully (OK)
+2025-04-13 14:39:25 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:36102
+2025-04-13 14:39:25 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "history"; ARGS: "[]"
+2025-04-13 14:39:25 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:36102" successfully (OK)
+2025-04-13 18:31:40 [main] WARN  o.e.server.managers.FileManager     - Файл JSON пустой. Используется пустая коллекция
+2025-04-13 18:31:40 [main] INFO  o.e.server.managers.RuntimeManager  - Сервер для управления коллекцией Ticket запущен
+2025-04-13 18:31:49 [main] INFO  org.example.server.managers.Server  - Connected to: /127.0.0.1:46784
+2025-04-13 18:31:49 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:46784
+2025-04-13 18:31:49 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "33"; ARGS: "[]"
+2025-04-13 18:31:49 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:46784" successfully (NO_SUCH_COMMAND)
+2025-04-13 18:31:50 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:46784
+2025-04-13 18:31:50 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "lol"; ARGS: "[]"
+2025-04-13 18:31:50 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:46784" successfully (NO_SUCH_COMMAND)
+2025-04-13 18:31:51 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:46784
+2025-04-13 18:31:51 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "help"; ARGS: "[]"
+2025-04-13 18:31:51 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:46784" successfully (OK)
+2025-04-13 18:31:53 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:46784
+2025-04-13 18:31:53 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "show"; ARGS: "[]"
+2025-04-13 18:31:53 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:46784" successfully (OK)
+2025-04-13 18:31:54 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:46784
+2025-04-13 18:31:54 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "add"; ARGS: "[]"
+2025-04-13 18:31:54 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:46784" successfully (OBJECT_REQUIRED)
+2025-04-13 18:32:00 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:46784
+2025-04-13 18:32:00 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "add"; ARGS: "[]"
+2025-04-13 18:32:00 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:46784" successfully (OK)
+2025-04-13 18:32:12 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:46784
+2025-04-13 18:32:12 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "show"; ARGS: "[]"
+2025-04-13 18:32:12 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:46784" successfully (OK)
+2025-04-13 18:32:15 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:46784
+2025-04-13 18:32:15 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "update"; ARGS: "[1]"
+2025-04-13 18:32:15 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:46784" successfully (OBJECT_REQUIRED)
+2025-04-13 18:32:23 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:46784
+2025-04-13 18:32:23 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "update"; ARGS: "[1]"
+2025-04-13 18:32:23 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:46784" successfully (OK)
+2025-04-13 18:32:28 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:46784
+2025-04-13 18:32:28 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "show"; ARGS: "[]"
+2025-04-13 18:32:28 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:46784" successfully (OK)
+2025-04-13 18:32:31 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:46784
+2025-04-13 18:32:31 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "update"; ARGS: "[2]"
+2025-04-13 18:32:31 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:46784" successfully (OK)
+2025-04-13 18:32:36 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:46784
+2025-04-13 18:32:36 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "update"; ARGS: "[4]"
+2025-04-13 18:32:36 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:46784" successfully (OK)
+2025-04-13 18:32:53 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:46784
+2025-04-13 18:32:53 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "show"; ARGS: "[]"
+2025-04-13 18:32:53 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:46784" successfully (OK)
+2025-04-13 18:36:14 [main] INFO  org.example.server.managers.Server  - Connected to: /127.0.0.1:48894
+2025-04-13 18:36:14 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:48894
+2025-04-13 18:36:14 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "ырщц"; ARGS: "[]"
+2025-04-13 18:36:14 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:48894" successfully (NO_SUCH_COMMAND)
+2025-04-13 18:36:17 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:48894
+2025-04-13 18:36:17 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "show"; ARGS: "[]"
+2025-04-13 18:36:17 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:48894" successfully (OK)
+2025-04-13 18:36:19 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:48894
+2025-04-13 18:36:19 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "update"; ARGS: "[]"
+2025-04-13 18:36:19 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:48894" successfully (ARGS_ERROR)
+2025-04-13 18:36:22 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:48894
+2025-04-13 18:36:22 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "update"; ARGS: "[1]"
+2025-04-13 18:36:22 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:48894" successfully (OBJECT_REQUIRED)
+2025-04-13 18:36:27 [main] INFO  org.example.server.managers.Server  - Connected to: /127.0.0.1:43336
+2025-04-13 18:36:27 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:43336
+2025-04-13 18:36:27 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "update"; ARGS: "[2]"
+2025-04-13 18:36:27 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:43336" successfully (OK)
+2025-04-13 18:38:40 [main] WARN  o.e.server.managers.FileManager     - Файл JSON пустой. Используется пустая коллекция
+2025-04-13 18:38:40 [main] INFO  o.e.server.managers.RuntimeManager  - Сервер для управления коллекцией Ticket запущен
+2025-04-13 18:38:46 [main] INFO  org.example.server.managers.Server  - Connected to: /127.0.0.1:56260
+2025-04-13 18:38:46 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:56260
+2025-04-13 18:38:46 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "show"; ARGS: "[]"
+2025-04-13 18:38:46 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:56260" successfully (OK)
+2025-04-13 18:38:50 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:56260
+2025-04-13 18:38:50 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "show"; ARGS: "[]"
+2025-04-13 18:38:50 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:56260" successfully (OK)
+2025-04-13 18:38:54 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:56260
+2025-04-13 18:38:54 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "add"; ARGS: "[]"
+2025-04-13 18:38:54 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:56260" successfully (OBJECT_REQUIRED)
+2025-04-13 18:39:01 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:56260
+2025-04-13 18:39:01 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "add"; ARGS: "[]"
+2025-04-13 18:39:01 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:56260" successfully (OK)
+2025-04-13 18:39:03 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:56260
+2025-04-13 18:39:03 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "show"; ARGS: "[]"
+2025-04-13 18:39:03 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:56260" successfully (OK)
+2025-04-13 18:39:05 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:56260
+2025-04-13 18:39:05 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "update"; ARGS: "[2]"
+2025-04-13 18:39:05 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:56260" successfully (ARGS_ERROR)
+2025-04-13 18:39:09 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:56260
+2025-04-13 18:39:09 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "update"; ARGS: "[4]"
+2025-04-13 18:39:09 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:56260" successfully (ARGS_ERROR)
+2025-04-13 18:39:12 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:56260
+2025-04-13 18:39:12 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "update"; ARGS: "[-2]"
+2025-04-13 18:39:12 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:56260" successfully (ARGS_ERROR)
+2025-04-13 18:39:14 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:56260
+2025-04-13 18:39:14 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "update"; ARGS: "[f]"
+2025-04-13 18:39:14 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:56260" successfully (ARGS_ERROR)
+2025-04-13 18:39:16 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:56260
+2025-04-13 18:39:16 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "update"; ARGS: "[1]"
+2025-04-13 18:39:16 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:56260" successfully (OBJECT_REQUIRED)
+2025-04-13 18:39:32 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:56260
+2025-04-13 18:39:32 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "update"; ARGS: "[1]"
+2025-04-13 18:39:32 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:56260" successfully (OK)
+2025-04-13 18:39:35 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:56260
+2025-04-13 18:39:35 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "u"; ARGS: "[]"
+2025-04-13 18:39:35 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:56260" successfully (NO_SUCH_COMMAND)
+2025-04-13 18:39:37 [main] INFO  org.example.server.managers.Server  - Got REQUEST from: /127.0.0.1:56260
+2025-04-13 18:39:37 [main] INFO  org.example.server.managers.Server  - COMMAND NAME: "show"; ARGS: "[]"
+2025-04-13 18:39:37 [main] INFO  org.example.server.managers.Server  - Sent RESPONSE to "/127.0.0.1:56260" successfully (OK)
+2025-04-13 18:39:40 [Thread-0] INFO  org.example.server.managers.Server  - Сокеты и селекторы были закрыты
+2025-04-13 18:39:40 [Thread-0] INFO  o.e.server.managers.RuntimeManager  - ⚡ Сервер - В С Ё.

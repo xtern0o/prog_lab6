@@ -3,6 +3,8 @@ package org.example.server.managers;
 import lombok.Getter;
 import org.example.common.entity.Ticket;
 import org.example.common.exceptions.ValidationError;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -12,6 +14,7 @@ import java.util.stream.Collectors;
  * @author maxkarn
  */
 public class CollectionManager {
+    public final static Logger logger = LoggerFactory.getLogger(CollectionManager.class);
     /**
      * Коллекция билетов
      */
@@ -38,6 +41,7 @@ public class CollectionManager {
         if (!collection.stream().allMatch(Ticket::validate)) return false;
 
         CollectionManager.collection = collection;
+        logger.info("Коллекция обновлена");
         return true;
     }
 
@@ -100,7 +104,10 @@ public class CollectionManager {
      * @return true если элемент с таким id есть и удален, и false если элемент не найден
      */
     public boolean removeById(int id) {
-        return collection.removeIf(ticket -> ticket.getId() == id);
+        boolean deleted = collection.removeIf(ticket -> ticket.getId() == id);
+        if (deleted) logger.info("Элемент с id=" + id + " был успешно удален");
+        else logger.warn("Элемент с id={} не найден", id);
+        return deleted;
     }
 
     /**
@@ -124,6 +131,7 @@ public class CollectionManager {
     public void addElement(Ticket ticket) throws ValidationError {
         if (ticket.validate()) {
             collection.add(ticket);
+            logger.info("Добавлен новый элемент с id=" + ticket.getId());
             return;
         }
         throw new ValidationError(ticket);

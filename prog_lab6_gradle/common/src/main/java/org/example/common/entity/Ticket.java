@@ -109,7 +109,6 @@ public class Ticket implements Validatable, Comparable<Ticket>, Serializable {
 
     @Override
     public int compareTo(Ticket ticket) {
-        // TODO: сделать нормальный compareTo
-        return this.creationDate.compareTo(ticket.creationDate);
+        return this.coordinates.compareTo(ticket.coordinates);
     }
 }
