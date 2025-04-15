@@ -70,7 +70,20 @@ public class SimpleClient implements Closeable {
             socketChannel.configureBlocking(false);
             socketChannel.connect(new InetSocketAddress(host, port));
 
-            if (!socketChannel.finishConnect()) throw new IOException("Не удалось завершить соединение");
+            // заканчиваем соединение до таймаута (АХУЕТЬ РАБОТАЕТ)
+            long startTime = System.currentTimeMillis();
+            while (true) {
+                if (socketChannel.finishConnect()) {
+                    break;
+                }
+                if (System.currentTimeMillis() - startTime > TIMEOUT_MS) {
+                    throw new IOException("Timeout");
+                }
+                Thread.sleep(100);
+            }
+
+            if (!socketChannel.finishConnect()) throw new IOException();
+
 
             consoleOutput.println("Подключение к серверу: " + host + ":" + port);
 
@@ -82,6 +95,8 @@ public class SimpleClient implements Closeable {
         } catch (UnresolvedAddressException unresolvedAddressException) {
             consoleOutput.printError("Некорректный адрес сервака");
             return false;
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -223,6 +238,11 @@ public class SimpleClient implements Closeable {
      * @return ДА или НЕТ.
      */
     public boolean isConnected() {
-        return socketChannel != null && socketChannel.isConnected();
+        try {
+            Thread.sleep(50);
+            return socketChannel != null && socketChannel.isConnected();
+        } catch (InterruptedException interruptedException) {
+            throw new RuntimeException(interruptedException);
+        }
     }
 }
