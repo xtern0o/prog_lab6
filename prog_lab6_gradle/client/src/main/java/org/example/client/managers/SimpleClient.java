@@ -72,18 +72,13 @@ public class SimpleClient implements Closeable {
 
             // заканчиваем соединение до таймаута (АХУЕТЬ РАБОТАЕТ)
             long startTime = System.currentTimeMillis();
-            while (true) {
-                if (socketChannel.finishConnect()) {
-                    break;
-                }
+            while (!socketChannel.finishConnect()) {
                 if (System.currentTimeMillis() - startTime > TIMEOUT_MS) {
-                    throw new IOException("Timeout");
+                    this.currentReconnectionAttempt = 1;
+                    throw new RuntimeException("Timeout");
                 }
                 Thread.sleep(100);
             }
-
-            if (!socketChannel.finishConnect()) throw new IOException();
-
 
             consoleOutput.println("Подключение к серверу: " + host + ":" + port);
 
