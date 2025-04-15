@@ -74,7 +74,7 @@ public class RuntimeManager implements Runnable {
                 consoleOutput.println("Конец ввода");
                 return;
             } catch (Exception exception) {
-                consoleOutput.printError(exception.getMessage());
+                consoleOutput.printError(exception.getClass().getName() + ": " + exception.getMessage());
             }
         }
     }
