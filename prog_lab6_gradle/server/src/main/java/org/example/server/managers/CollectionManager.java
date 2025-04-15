@@ -120,7 +120,6 @@ public class CollectionManager {
                 .map(Ticket::getId)
                 .distinct()
                 .count() == collection.size();
-
     }
 
     /**
@@ -131,7 +130,7 @@ public class CollectionManager {
     public void addElement(Ticket ticket) throws ValidationError {
         if (ticket.validate()) {
             collection.add(ticket);
-            logger.info("Добавлен новый элемент с id=" + ticket.getId());
+            logger.info("Добавлен новый элемент с id={}", ticket.getId());
             return;
         }
         throw new ValidationError(ticket);

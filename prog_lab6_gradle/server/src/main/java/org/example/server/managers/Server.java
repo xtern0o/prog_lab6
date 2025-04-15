@@ -66,7 +66,7 @@ public class Server {
                     }
                 }
             } catch (ClosedSelectorException e) {
-
+                logger.error("Селектор закрыт: {}", e.getMessage());
                 break;
             } catch (SocketException e) {
                 logger.error("Ошибка сокетов: {}", e.getMessage());

@@ -15,8 +15,7 @@ public class HelpCommand extends Command {
         super("help", "Вывод справки о доступных командах");
         this.commandManager = commandManager;
     }
-
-
+    
     @Override
     public Response execute(RequestCommand requestCommand) {
         if (requestCommand.getArgs() != null) {
