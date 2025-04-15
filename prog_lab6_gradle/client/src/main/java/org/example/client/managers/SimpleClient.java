@@ -79,6 +79,9 @@ public class SimpleClient implements Closeable {
         } catch (IOException ioException) {
             handleConnectionError(ioException);
             return isConnected();
+        } catch (UnresolvedAddressException unresolvedAddressException) {
+            consoleOutput.printError("Некорректный адрес сервака");
+            return false;
         }
     }
 
