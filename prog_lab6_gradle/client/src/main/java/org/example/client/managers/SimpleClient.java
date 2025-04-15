@@ -70,7 +70,7 @@ public class SimpleClient implements Closeable {
             socketChannel.configureBlocking(false);
             socketChannel.connect(new InetSocketAddress(host, port));
 
-            if (!socketChannel.finishConnect()) throw new IOException();
+            if (!socketChannel.finishConnect()) throw new IOException("Не удалось завершить соединение");
 
             consoleOutput.println("Подключение к серверу: " + host + ":" + port);
 
@@ -107,7 +107,7 @@ public class SimpleClient implements Closeable {
         try {
             if (!isConnected()) {
                 connectToServer();
-                if (!isConnected()) throw new IOException();
+                if (!isConnected()) throw new IOException("Соединение не установлено");
                 return send(requestCommand);
             }
 
