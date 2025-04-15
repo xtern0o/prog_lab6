@@ -149,6 +149,8 @@ public class SimpleClient implements Closeable {
             return new Response(ResponseStatus.SERVER_ERROR, "Некорректный формат данных от сервера");
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
+        } catch (UnresolvedAddressException unresolvedAddressException) {
+            throw new RuntimeException("Неверный адрес сервака");
         }
     }
 
