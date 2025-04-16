@@ -70,7 +70,7 @@ public class SimpleClient implements Closeable {
             socketChannel.configureBlocking(false);
             socketChannel.connect(new InetSocketAddress(host, port));
 
-            // заканчиваем соединение до таймаута (АХУЕТЬ РАБОТАЕТ)
+            // заканчиваем соединение до таймаута
             long startTime = System.currentTimeMillis();
             while (!socketChannel.finishConnect()) {
                 if (System.currentTimeMillis() - startTime > TIMEOUT_MS) {
